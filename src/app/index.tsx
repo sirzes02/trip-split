@@ -1,17 +1,28 @@
-import { Text, View, StyleSheet } from "react-native";
+import { ScreenHeader } from "@/components/ScreenHeader";
+import { router } from "expo-router";
+import { StyleSheet, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
-export default function Index() {
+export default function TripsScreen() {
   return (
-    <View style={styles.container}>
-      <Text>Edit src/app/index.tsx to edit this screen.</Text>
+    <View>
+      <ScreenHeader
+        title="Mis viajes"
+        showBack={false}
+        actionIcon="plus"
+        onAction={() => router.push("/trips/new")}
+      />
+
+      <SafeAreaView edges={["left", "right", "bottom"]} style={styles.content}>
+        {/* Lista de viajes */}
+      </SafeAreaView>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  content: {
     flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
+    paddingHorizontal: 20,
   },
 });
