@@ -1,0 +1,14 @@
+{
+  "common": {
+    "cancel": "Cancel",
+    "save": "Save",
+    "delete": "Delete",
+    "back": "Back"
+  },
+  "navigation": {
+    "myTrips": "My trips"
+  },
+  "trips": {
+    "newTrip": "New trip"
+  }
+}
