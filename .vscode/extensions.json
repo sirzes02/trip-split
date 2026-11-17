@@ -1,1 +1,13 @@
-{ "recommendations": ["expo.vscode-expo-tools"] }
+{
+  "recommendations": [
+    "expo.vscode-expo-tools",
+    "dbaeumer.vscode-eslint",
+    "Orta.vscode-jest",
+    "naumovs.color-highlight",
+    "usernamehw.errorlens",
+    "github.vscode-github-actions",
+    "pkief.material-icon-theme",
+    "esbenp.prettier-vscode",
+    "EditorConfig.EditorConfig"
+  ]
+}

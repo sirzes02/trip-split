@@ -4,10 +4,7 @@ import {
 } from "@/domain/errors/RepositoryError";
 
 export type CreateTripFieldError =
-  | "required"
-  | "invalidDates"
-  | "textTooLong"
-  | "invalidCharacters";
+  "required" | "invalidDates" | "textTooLong" | "invalidCharacters";
 
 export interface CreateTripForm {
   name: string;
