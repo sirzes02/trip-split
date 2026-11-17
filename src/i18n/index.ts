@@ -9,6 +9,7 @@ const deviceLanguage = getLocales()[0]?.languageCode;
 
 const supportedLanguage = deviceLanguage === "es" ? "es" : "en";
 
+// eslint-disable-next-line import/no-named-as-default-member -- i18next's default instance uses .use() to register plugins.
 i18n.use(initReactI18next).init({
   resources: {
     es: { translation: es },

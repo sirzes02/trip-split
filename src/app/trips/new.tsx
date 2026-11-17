@@ -4,14 +4,13 @@ import type { Trip } from "@/domain/models/Trip";
 import {
   validateTripForm,
   type CreateTripForm,
-  type CreateTripFormErrors,
 } from "@/domain/validation/tripFormValidation";
 import { DateField } from "@/presentation/components/DateField";
 import { FormTextField } from "@/presentation/components/FormTextField";
 import { LoadingOverlay } from "@/presentation/components/LoadingOverlay";
 import { ScreenHeader } from "@/presentation/components/ScreenHeader";
 import { useRouter } from "expo-router";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { ScrollView, View } from "react-native";
 import { Button } from "react-native-paper";
@@ -26,27 +25,18 @@ export default function NewTripScreen() {
     startDate: new Date(),
     endDate: new Date(),
   }));
-  const [fieldErrors, setFieldErrors] = useState<CreateTripFormErrors>({
-    name: "required",
-    destination: "required",
-    endDate: null,
-  });
   const [isLoading, setIsLoading] = useState(false);
 
   const operationLock = useRef(false);
 
-  useEffect(() => {
-    setFieldErrors(validateTripForm(form));
-  }, [form]);
+  const fieldErrors = validateTripForm(form);
 
   async function handleCreateTrip() {
     if (operationLock.current) {
       return;
     }
 
-    const errors = validateTripForm(form);
-    if (errors.name || errors.destination || errors.endDate) {
-      setFieldErrors(errors);
+    if (fieldErrors.name || fieldErrors.destination || fieldErrors.endDate) {
       return;
     }
 
