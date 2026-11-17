@@ -1,3 +1,5 @@
+import { colors } from "@/theme/colors";
+import { typography } from "@/theme/typography";
 import { router } from "expo-router";
 import { StyleSheet } from "react-native";
 import { Appbar } from "react-native-paper";
@@ -24,10 +26,19 @@ export function ScreenHeader({
 
   return (
     <Appbar.Header mode={isSecondaryTitle ? "center-aligned" : "small"}>
-      {showBack && <Appbar.BackAction onPress={() => router.back()} />}
+      {showBack && (
+        <Appbar.BackAction
+          onPress={() => router.back()}
+          color={colors.accent}
+        />
+      )}
       <Appbar.Content title={title} titleStyle={titleTextStyle} />
       {actionIcon && onAction && (
-        <Appbar.Action icon={actionIcon} onPress={onAction} />
+        <Appbar.Action
+          icon={actionIcon}
+          onPress={onAction}
+          color={colors.accent}
+        />
       )}
     </Appbar.Header>
   );
@@ -35,11 +46,11 @@ export function ScreenHeader({
 
 const styles = StyleSheet.create({
   titleMain: {
-    fontSize: 26,
-    fontWeight: "700",
+    fontSize: typography.fontSizes.screenHeading,
+    fontWeight: typography.fontWeights.bold,
   },
   titleSecondary: {
-    fontSize: 22,
-    fontWeight: "400",
+    fontSize: typography.fontSizes.secondaryHeading,
+    fontWeight: typography.fontWeights.regular,
   },
 });

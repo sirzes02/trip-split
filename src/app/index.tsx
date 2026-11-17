@@ -1,11 +1,13 @@
 import { dependencies } from "@/di/DependencyContainer";
 import type { Trip } from "@/domain/models/Trip";
 import { ScreenHeader } from "@/presentation/components/ScreenHeader";
+import { colors } from "@/theme/colors";
+import { typography } from "@/theme/typography";
 import { router, useFocusEffect } from "expo-router";
 import { useCallback, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { FlatList, RefreshControl, StyleSheet, View } from "react-native";
-import { List, Text } from "react-native-paper";
+import { Icon, List, Text } from "react-native-paper";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function TripsScreen() {
@@ -53,7 +55,7 @@ export default function TripsScreen() {
             <RefreshControl
               refreshing={isLoading}
               onRefresh={loadTrips}
-              tintColor="#A78BFA"
+              tintColor={colors.accent}
             />
           }
           ListEmptyComponent={
@@ -63,10 +65,36 @@ export default function TripsScreen() {
           }
           renderItem={({ item }) => (
             <List.Item
-              title={item.name}
-              description={`${item.destination} · ${item.startDate.toLocaleDateString()} – ${item.endDate.toLocaleDateString()}`}
+              title={`${item.destination} - ${item.name}`}
+              description={
+                <View style={styles.listTitle}>
+                  <Icon size={20} source={"calendar-account-outline"} />
+                  <Text style={styles.listDates}>
+                    {item.startDate.toLocaleDateString()} –{" "}
+                    {item.endDate.toLocaleDateString()}
+                  </Text>
+                </View>
+              }
               left={(props) => (
-                <List.Icon {...props} icon="map-marker-outline" />
+                <List.Icon
+                  {...props}
+                  style={styles.listIconLeft}
+                  icon="map-marker-outline"
+                  color={colors.accent}
+                />
+              )}
+              right={(props) => (
+                <>
+                  <View style={styles.listMoneyView}>
+                    <Text style={styles.listMoneyText}>$300.000</Text>
+                    <Text style={styles.listMoneyDescription}>Por recibir</Text>
+                  </View>
+                  <List.Icon
+                    {...props}
+                    style={styles.listIconRight}
+                    icon="chevron-right"
+                  />
+                </>
               )}
             />
           )}
@@ -86,5 +114,37 @@ const styles = StyleSheet.create({
   },
   status: {
     marginTop: 24,
+  },
+  listTitle: {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    paddingTop: 5,
+  },
+  listDates: {
+    fontSize: typography.fontSizes.caption,
+    marginLeft: 3,
+  },
+  listIconLeft: {
+    alignSelf: "center",
+  },
+  listMoneyView: {
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: colors.successBackground,
+    borderRadius: 8,
+    paddingHorizontal: 10,
+    marginRight: 0,
+  },
+  listMoneyText: {
+    fontSize: typography.fontSizes.amount,
+    fontWeight: typography.fontWeights.medium,
+  },
+  listMoneyDescription: {
+    fontSize: typography.fontSizes.caption,
+    color: colors.success,
+  },
+  listIconRight: {
+    margin: 0,
   },
 });

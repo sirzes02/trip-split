@@ -1,3 +1,5 @@
+import { colors } from "@/theme/colors";
+import { typography } from "@/theme/typography";
 import { StyleSheet, View } from "react-native";
 import { ActivityIndicator, Modal, Portal, Text } from "react-native-paper";
 
@@ -17,7 +19,7 @@ export function LoadingOverlay({ visible, message }: LoadingOverlayProps) {
         contentContainerStyle={styles.content}
       >
         <View style={styles.innerContent}>
-          <ActivityIndicator size="large" color="#A78BFA" />
+          <ActivityIndicator size="large" color={colors.accent} />
           {message ? <Text style={styles.message}>{message}</Text> : null}
         </View>
       </Modal>
@@ -38,8 +40,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 28,
     paddingVertical: 20,
     borderRadius: 24,
-    backgroundColor: "rgba(255, 255, 255, 0.98)",
-    shadowColor: "#000",
+    backgroundColor: colors.loadingSurface,
+    shadowColor: colors.shadow,
     shadowOpacity: 0.18,
     shadowRadius: 18,
     shadowOffset: { width: 0, height: 10 },
@@ -51,9 +53,9 @@ const styles = StyleSheet.create({
     gap: 16,
   },
   message: {
-    color: "#2C2F36",
-    fontSize: 16,
-    fontWeight: "500",
+    color: colors.loadingText,
+    fontSize: typography.fontSizes.body,
+    fontWeight: typography.fontWeights.medium,
     textAlign: "center",
   },
 });
