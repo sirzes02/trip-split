@@ -1,9 +1,11 @@
 import { dependencies } from "@/di/DependencyContainer";
-import {
-  ALLOWED_TRIP_TEXT,
-  MAX_TRIP_TEXT_LENGTH,
-} from "@/domain/errors/RepositoryError";
+import { MAX_TRIP_TEXT_LENGTH } from "@/domain/errors/RepositoryError";
 import type { Trip } from "@/domain/models/Trip";
+import {
+  validateTripForm,
+  type CreateTripForm,
+  type CreateTripFormErrors,
+} from "@/domain/validation/tripFormValidation";
 import { DateField } from "@/presentation/components/DateField";
 import { FormTextField } from "@/presentation/components/FormTextField";
 import { LoadingOverlay } from "@/presentation/components/LoadingOverlay";
@@ -13,25 +15,6 @@ import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { ScrollView, View } from "react-native";
 import { Button } from "react-native-paper";
-
-type CreateTripFieldError =
-  | "required"
-  | "invalidDates"
-  | "textTooLong"
-  | "invalidCharacters";
-
-interface CreateTripForm {
-  name: string;
-  destination: string;
-  startDate: Date;
-  endDate: Date;
-}
-
-interface CreateTripFormErrors {
-  name: CreateTripFieldError | null;
-  destination: CreateTripFieldError | null;
-  endDate: CreateTripFieldError | null;
-}
 
 export default function NewTripScreen() {
   const router = useRouter();
@@ -53,31 +36,17 @@ export default function NewTripScreen() {
   const operationLock = useRef(false);
 
   useEffect(() => {
-    setFieldErrors({
-      name: getTextError(form.name),
-      destination: getTextError(form.destination),
-      endDate: form.endDate >= form.startDate ? null : "invalidDates",
-    });
+    setFieldErrors(validateTripForm(form));
   }, [form]);
-
-  function getTextError(value: string): CreateTripFieldError | null {
-    if (!value.trim()) {
-      return "required";
-    }
-
-    if (Array.from(value).length > MAX_TRIP_TEXT_LENGTH) {
-      return "textTooLong";
-    }
-
-    if (!ALLOWED_TRIP_TEXT.test(value)) {
-      return "invalidCharacters";
-    }
-
-    return null;
-  }
 
   async function handleCreateTrip() {
     if (operationLock.current) {
+      return;
+    }
+
+    const errors = validateTripForm(form);
+    if (errors.name || errors.destination || errors.endDate) {
+      setFieldErrors(errors);
       return;
     }
 
