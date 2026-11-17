@@ -1,0 +1,39 @@
+{
+  "common": {
+    "cancel": "Cancel",
+    "save": "Save",
+    "delete": "Delete",
+    "back": "Back"
+  },
+  "navigation": {
+    "myTrips": "My trips"
+  },
+  "trips": {
+    "newTrip": "New trip",
+    "empty": "No trips yet.",
+    "loadError": "Couldn't load trips."
+  },
+  "createTrip": {
+    "title": "Create trip",
+    "name": "Trip name",
+    "namePlaceholder": "e.g. Summer vacation",
+    "destination": "Destination",
+    "destinationPlaceholder": "Where are you going?",
+    "startDate": "Start date",
+    "endDate": "End date",
+    "selectDate": "Select date",
+    "create": "Create trip",
+    "creating": "Creating trip...",
+    "required": "This field is required.",
+    "invalidDates": "End date cannot be before start date.",
+    "textTooLong": "Use 15 characters or fewer.",
+    "invalidCharacters": "Use only letters, numbers, spaces, hyphens, or apostrophes.",
+    "error": "Something went wrong while creating the trip."
+  },
+  "loading": {
+    "creating": "Creating trip...",
+    "deleting": "Deleting trip...",
+    "updating": "Updating trip...",
+    "loading": "Loading..."
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "common": {
+    "cancel": "Cancelar",
+    "save": "Guardar",
+    "delete": "Eliminar",
+    "back": "Volver"
+  },
+  "navigation": {
+    "myTrips": "Mis viajes"
+  },
+  "trips": {
+    "newTrip": "Nuevo viaje",
+    "empty": "Todavía no tienes viajes.",
+    "loadError": "No se pudieron cargar los viajes."
+  },
+  "createTrip": {
+    "title": "Crear viaje",
+    "name": "Nombre del viaje",
+    "namePlaceholder": "Ej. Vacaciones de verano",
+    "destination": "Destino",
+    "destinationPlaceholder": "¿A dónde vas?",
+    "startDate": "Fecha de inicio",
+    "endDate": "Fecha de finalización",
+    "selectDate": "Seleccionar fecha",
+    "create": "Crear viaje",
+    "creating": "Creando viaje...",
+    "required": "Este campo es obligatorio.",
+    "invalidDates": "La fecha final no puede ser anterior a la inicial.",
+    "textTooLong": "Usa un máximo de 15 caracteres.",
+    "invalidCharacters": "Usa solo letras, números, espacios, guiones o apóstrofes.",
+    "error": "Ocurrió un error al crear el viaje."
+  },
+  "loading": {
+    "creating": "Creando viaje...",
+    "deleting": "Eliminando viaje...",
+    "updating": "Actualizando viaje...",
+    "loading": "Cargando..."
+  }
+}
