@@ -8,9 +8,11 @@ jest.mock("../database/database", () => ({
 }));
 
 const mockGetAllAsync = jest.fn();
+const mockGetFirstAsync = jest.fn();
 const mockRunAsync = jest.fn();
 const mockDatabase = {
   getAllAsync: mockGetAllAsync,
+  getFirstAsync: mockGetFirstAsync,
   runAsync: mockRunAsync,
 } as unknown as SQLiteDatabase;
 const mockGetDatabase = jest.mocked(getDatabase);
@@ -48,6 +50,33 @@ describe("LocalTripRepository", () => {
     expect(mockGetAllAsync).toHaveBeenCalledWith(
       "SELECT * FROM trips ORDER BY created_at DESC;",
     );
+  });
+
+  it("gets and maps a trip by id", async () => {
+    mockGetFirstAsync.mockResolvedValue({
+      id: trip.id,
+      name: trip.name,
+      destination: trip.destination,
+      start_date: trip.startDate.toISOString(),
+      end_date: trip.endDate.toISOString(),
+      created_at: trip.createdAt.toISOString(),
+    });
+
+    await expect(new LocalTripRepository().getTrip(trip.id)).resolves.toEqual(
+      trip,
+    );
+    expect(mockGetFirstAsync).toHaveBeenCalledWith(
+      "SELECT * FROM trips WHERE id = ?;",
+      trip.id,
+    );
+  });
+
+  it("returns null when a trip does not exist", async () => {
+    mockGetFirstAsync.mockResolvedValue(null);
+
+    await expect(
+      new LocalTripRepository().getTrip("missing-trip-id"),
+    ).resolves.toBeNull();
   });
 
   it("saves a trip using parameterized values", async () => {

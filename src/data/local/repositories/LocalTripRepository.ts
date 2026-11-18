@@ -21,6 +21,22 @@ export class LocalTripRepository implements TripRepository {
     }
   }
 
+  async getTrip(id: string): Promise<Trip | null> {
+    try {
+      const database = await getDatabase();
+      const row = await database.getFirstAsync<TripRow>(
+        "SELECT * FROM trips WHERE id = ?;",
+        id,
+      );
+
+      return row ? TripMapper.toDomain(row) : null;
+    } catch (error) {
+      throw new RepositoryError("operationFailed", "Failed to fetch trip", {
+        cause: error,
+      });
+    }
+  }
+
   async saveTrip(trip: Trip): Promise<void> {
     try {
       const database = await getDatabase();

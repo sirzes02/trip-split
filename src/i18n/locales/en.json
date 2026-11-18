@@ -11,7 +11,12 @@
   "trips": {
     "newTrip": "New trip",
     "empty": "No trips yet.",
-    "loadError": "Couldn't load trips."
+    "loadError": "Couldn't load trips.",
+    "tripDetails": "Trip details",
+    "tripNotFound": "The trip couldn't be found.",
+    "deleteTitle": "Delete trip",
+    "deleteConfirmation": "Are you sure you want to delete this trip? This action can't be undone.",
+    "deleteError": "Couldn't delete the trip."
   },
   "createTrip": {
     "title": "Create trip",

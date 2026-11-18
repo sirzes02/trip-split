@@ -65,6 +65,12 @@ export default function TripsScreen() {
           }
           renderItem={({ item }) => (
             <List.Item
+              onPress={() =>
+                router.push({
+                  pathname: "/trips/[id]",
+                  params: { id: item.id, name: item.name },
+                })
+              }
               title={`${item.destination} - ${item.name}`}
               description={
                 <View style={styles.listTitle}>

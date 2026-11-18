@@ -16,6 +16,7 @@ describe("GetTrips", () => {
     ];
     const repository: jest.Mocked<TripRepository> = {
       fetchTrips: jest.fn().mockResolvedValue(trips),
+      getTrip: jest.fn().mockResolvedValue(trips[0]),
       saveTrip: jest.fn().mockResolvedValue(undefined),
       deleteTrip: jest.fn().mockResolvedValue(undefined),
     };

@@ -8,6 +8,7 @@ jest.mock("expo-crypto", () => ({
 function makeRepository(): jest.Mocked<TripRepository> {
   return {
     fetchTrips: jest.fn().mockResolvedValue([]),
+    getTrip: jest.fn().mockResolvedValue(null),
     saveTrip: jest.fn().mockResolvedValue(undefined),
     deleteTrip: jest.fn().mockResolvedValue(undefined),
   };

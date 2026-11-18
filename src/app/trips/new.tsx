@@ -31,7 +31,7 @@ export default function NewTripScreen() {
 
   const fieldErrors = validateTripForm(form);
 
-  async function handleCreateTrip() {
+  const handleCreateTrip = async () => {
     if (operationLock.current) {
       return;
     }
@@ -61,7 +61,7 @@ export default function NewTripScreen() {
     if (trip) {
       router.back();
     }
-  }
+  };
 
   return (
     <View>

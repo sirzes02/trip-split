@@ -11,7 +11,12 @@
   "trips": {
     "newTrip": "Nuevo viaje",
     "empty": "Todavía no tienes viajes.",
-    "loadError": "No se pudieron cargar los viajes."
+    "loadError": "No se pudieron cargar los viajes.",
+    "tripDetails": "Detalles del viaje",
+    "tripNotFound": "No se pudo encontrar el viaje.",
+    "deleteTitle": "Eliminar viaje",
+    "deleteConfirmation": "¿Seguro que quieres eliminar este viaje? Esta acción no se puede deshacer.",
+    "deleteError": "No se pudo eliminar el viaje."
   },
   "createTrip": {
     "title": "Crear viaje",
